@@ -19,7 +19,7 @@ jobs:
       - run: python -m build
       - run: mkdir -p evidence && python tests/check_artifacts.py
       - run: python -m pip install dist/*.whl && migration-workbench --version
-      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+      - uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9
         with:
           name: release-packages
           path: dist/
