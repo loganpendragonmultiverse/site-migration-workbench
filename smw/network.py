@@ -112,7 +112,9 @@ def request(target, allowed_origins, allowlist=(), timeout=10, limit=MAX_RESPONS
             sock.settimeout(min(timeout, remaining))
             sock.connect(address)  # No second name resolution.
             if p.scheme == "https":
-                sock = ssl.create_default_context().wrap_socket(sock, server_hostname=p.hostname)
+                context = ssl.create_default_context()
+                context.minimum_version = ssl.TLSVersion.TLSv1_2
+                sock = context.wrap_socket(sock, server_hostname=p.hostname)
             break
         except OSError as exc:
             last_error = exc

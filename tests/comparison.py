@@ -83,6 +83,8 @@ class Fixture(BaseHTTPRequestHandler):
                 body += b"x" * (1024 * 1024 + 20)
         self.send_response(status)
         for key, value in headers.items():
+            if "\r" in value or "\n" in value:
+                raise ValueError("Invalid fixture response header")
             self.send_header(key, value)
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()

@@ -21,3 +21,5 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+Runtime dependency: defusedxml 0.7.1 by Christian Heimes, Python Software Foundation License. Installed as a separate package; its license ships in its distribution. It rejects DTDs, entities and external references in imported sitemap XML.

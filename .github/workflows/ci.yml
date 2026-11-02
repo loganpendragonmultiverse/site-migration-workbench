@@ -17,7 +17,7 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
       - run: python -m pip install --upgrade pip
-      - run: python -m pip install ruff==0.17.3 build==1.6.1
+      - run: python -m pip install ruff==0.17.3 build==1.6.1 .
       - run: ruff format --check smw tests
       - run: ruff check smw tests
       - run: python -m unittest discover -s tests -v
@@ -28,6 +28,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: "3.12"
+      - run: python -m pip install .
       - run: npm install --prefix .test-tools --no-audit --no-fund playwright@1.64.1 prettier@3.6.2 @axe-core/playwright@4.10.2
       - run: .test-tools/node_modules/.bin/playwright install --with-deps chromium firefox
       - run: .test-tools/node_modules/.bin/prettier --check smw/app.js smw/index.html smw/style.css tests/*.mjs
@@ -36,6 +40,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: "3.12"
+      - run: python -m pip install .
       - run: mkdir -p .test-tools/downloads evidence
       - run: curl --fail --location https://downloads.wordpress.org/plugin/redirection.5.10.1.zip --output .test-tools/downloads/redirection-5.10.1.zip
       - run: echo 'f68a4be447ecba00c64e8a39d7517807ed49cc18e77b7a364c20cb31848235b7  .test-tools/downloads/redirection-5.10.1.zip' | sha256sum -c -

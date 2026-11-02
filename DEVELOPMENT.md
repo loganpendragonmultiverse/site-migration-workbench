@@ -1,6 +1,6 @@
 # Development contract
 
-The approved target is the bounded Site Migration Workbench workflow in docs/REQUIREMENTS.md. This is a persistent local planning/review/approval/handoff application, not a general crawler or automatic production deployer. No runtime dependencies, service accounts, analytics integrations or paid APIs are necessary.
+The approved target is the bounded Site Migration Workbench workflow in docs/REQUIREMENTS.md. This is a persistent local planning/review/approval/handoff application, not a general crawler or automatic production deployer. One pinned runtime dependency, defusedxml, hardens sitemap parsing; no service accounts, analytics integrations or paid APIs are necessary.
 
 Use Python 3.11+ and SQLite for durable state, a loopback standard-library server, and a small vanilla JavaScript interface. This keeps the offline planning workflow portable and avoids an always-running external service. Native packaging remains unverified.
 

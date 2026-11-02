@@ -2,7 +2,7 @@
 
 A local workspace for deciding where old website URLs belong, freezing a reviewed migration plan, exporting supported redirect rules, and checking a declared URL set against that exact revision.
 
-**Unreleased candidate 0.1.0.** The source is implemented and undergoing acceptance. It is not a Gold release. See [acceptance status](docs/ACCEPTANCE.md) for implemented scope, measured evidence, and remaining checks.
+**Version 0.1.0.** Complete local migration planning, review, deployment exports and verification for the documented Linux/POSIX scope. See [acceptance evidence](docs/ACCEPTANCE.md) for measured results and validation limits.
 
 ## Run locally
 

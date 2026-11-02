@@ -18,7 +18,7 @@ with zipfile.ZipFile(wheel) as archive:
     )
     assert metadata["Name"] == "site-migration-workbench"
     assert metadata["Version"] == __version__
-    assert not metadata.get_all("Requires-Dist")
+    assert metadata.get_all("Requires-Dist") == ["defusedxml==0.7.1"]
     checked = []
     for p in (root / "smw").iterdir():
         if p.suffix in (".py", ".html", ".css", ".js"):
@@ -45,7 +45,7 @@ with tarfile.open(source) as archive:
     assert not any(".test-tools" in name or name.endswith(".sqlite") for name in names)
 result = {
     "version": __version__,
-    "runtime_dependencies": [],
+    "runtime_dependencies": ["defusedxml==0.7.1"],
     "verified_package_files": checked,
     "artifacts": {p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in (wheel, source)},
     "scope": "local candidate artifacts, not tag-built public release",

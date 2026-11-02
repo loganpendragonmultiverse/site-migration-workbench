@@ -9,7 +9,8 @@ import json
 import re
 from datetime import datetime, timezone
 from urllib.parse import urlsplit, urlunsplit
-from xml.etree import ElementTree
+
+from defusedxml import ElementTree
 
 MAX_BYTES = 10 * 1024 * 1024
 MAX_ROWS = 10000
@@ -75,7 +76,7 @@ def parse_inventory(data, kind="list", columns=None):
         if re.search(r"<!\s*(DOCTYPE|ENTITY)", text, re.I):
             raise ValueError("XML entities and doctypes are disabled")
         try:
-            root = ElementTree.fromstring(text)
+            root = ElementTree.fromstring(text, forbid_dtd=True, forbid_entities=True, forbid_external=True)
         except ElementTree.ParseError as exc:
             raise ValueError("Invalid sitemap XML") from exc
         index = root.tag.rsplit("}", 1)[-1] == "sitemapindex"

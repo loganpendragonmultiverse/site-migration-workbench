@@ -1,6 +1,7 @@
 # Testing
 
 ```sh
+python -m pip install -e .
 python -m unittest discover -s tests -v
 PYTHONPATH=. python tests/benchmark.py
 node --check smw/app.js
@@ -18,4 +19,4 @@ The 10,000-row benchmark uses offline synthetic inventory and reports the actual
 
 Real Nginx/WordPress deployment tests, kill/restart phase coverage, packaged installation and audit results must be recorded in evidence before release. See docs/ACCEPTANCE.md; a missing result is not a pass.
 
-Full repeatable commands, exact fixture versions and observed image hashes are in docs/TEST-ENVIRONMENTS.md. Prepared workflows are unexecuted remotely while repository creation is held.
+Full repeatable commands, exact fixture versions and observed image hashes are in docs/TEST-ENVIRONMENTS.md. Remote workflow results are available in this repository’s Actions tab; release evidence binds them to exact commits.

@@ -8,6 +8,7 @@ version = "0.1.0"
 description = "Local migration decisions, frozen plans, deployment exports and verification"
 readme = "README.md"
 requires-python = ">=3.11"
+dependencies = ["defusedxml==0.7.1"]
 license = "MIT"
 authors = [{name="Logan Pendragon Multiverse"}]
 
