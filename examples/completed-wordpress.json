@@ -1,0 +1,100 @@
+{
+  "plugin": {
+    "version": "5.5.2",
+    "export_date": "2026-11-02T09:29:52.702821+00:00"
+  },
+  "groups": [
+    {
+      "id": 1,
+      "name": "Site Migration Workbench",
+      "module_id": 1,
+      "enabled": true
+    }
+  ],
+  "redirects": [
+    {
+      "url": "/merge-alpha",
+      "match_url": "/merge-alpha",
+      "match_type": "url",
+      "action_type": "url",
+      "action_code": 301,
+      "action_data": "https://example.com/bundle",
+      "regex": false,
+      "group_id": 1,
+      "position": 0,
+      "enabled": true,
+      "match_data": {
+        "source": {
+          "flag_query": "exact",
+          "flag_case": false,
+          "flag_trailing": false,
+          "flag_regex": false
+        }
+      },
+      "title": "Migration plan cc4b82b34cb7"
+    },
+    {
+      "url": "/merge-beta",
+      "match_url": "/merge-beta",
+      "match_type": "url",
+      "action_type": "url",
+      "action_code": 301,
+      "action_data": "https://example.com/bundle",
+      "regex": false,
+      "group_id": 1,
+      "position": 1,
+      "enabled": true,
+      "match_data": {
+        "source": {
+          "flag_query": "exact",
+          "flag_case": false,
+          "flag_trailing": false,
+          "flag_regex": false
+        }
+      },
+      "title": "Migration plan cc4b82b34cb7"
+    },
+    {
+      "url": "/obsolete",
+      "match_url": "/obsolete",
+      "match_type": "url",
+      "action_type": "error",
+      "action_code": 410,
+      "action_data": "",
+      "regex": false,
+      "group_id": 1,
+      "position": 2,
+      "enabled": true,
+      "match_data": {
+        "source": {
+          "flag_query": "exact",
+          "flag_case": false,
+          "flag_trailing": false,
+          "flag_regex": false
+        }
+      },
+      "title": "Migration plan cc4b82b34cb7"
+    },
+    {
+      "url": "/old-service",
+      "match_url": "/old-service",
+      "match_type": "url",
+      "action_type": "url",
+      "action_code": 301,
+      "action_data": "https://example.com/service",
+      "regex": false,
+      "group_id": 1,
+      "position": 3,
+      "enabled": true,
+      "match_data": {
+        "source": {
+          "flag_query": "exact",
+          "flag_case": false,
+          "flag_trailing": false,
+          "flag_regex": false
+        }
+      },
+      "title": "Migration plan cc4b82b34cb7"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+smw/app.py:2:1: I001 [*] Import block is un-sorted or un-formatted
+smw/app.py:7:8: F401 [*] `sys` imported but unused
+smw/app.py:8:8: F401 [*] `threading` imported but unused
+smw/app.py:145:33: RUF059 Unpacked variable `headers` is never used
+smw/app.py:237:15: RUF059 Unpacked variable `kind` is never used
+smw/domain.py:18:25: UP017 [*] Use `datetime.UTC` alias
+smw/domain.py:69:54: FURB167 [*] Use of regular expression alias `re.I`
+smw/exporters.py:2:1: I001 [*] Import block is un-sorted or un-formatted
+smw/jobs.py:2:1: I001 [*] Import block is un-sorted or un-formatted
+smw/jobs.py:4:8: F401 [*] `time` imported but unused
+smw/jobs.py:79:16: BLE001 Do not catch blind exception: `Exception`
+smw/jobs.py:79:29: F841 [*] Local variable `exc` is assigned to but never used
+smw/network.py:2:1: I001 [*] Import block is un-sorted or un-formatted
+smw/network.py:220:109: RUF007 Prefer `itertools.pairwise()` over `zip()` when iterating over successive pairs
+smw/reports.py:2:1: I001 [*] Import block is un-sorted or un-formatted
+smw/store.py:2:1: I001 [*] Import block is un-sorted or un-formatted
+tests/benchmark.py:2:1: I001 [*] Import block is un-sorted or un-formatted
+tests/test_workflow.py:1:1: I001 [*] Import block is un-sorted or un-formatted
+tests/test_workflow.py:1:8: F401 [*] `base64` imported but unused
+tests/test_workflow.py:6:8: F401 [*] `os` imported but unused
+tests/test_workflow.py:8:8: F401 [*] `sqlite3` imported but unused
+tests/test_workflow.py:11:8: F401 [*] `time` imported but unused
+tests/test_workflow.py:191:12: RUF012 Mutable default value for class attribute
+tests/test_workflow.py:243:86: B023 Function definition does not bind loop variable `status`
+tests/test_workflow.py:270:24: RUF059 Unpacked variable `headers` is never used
+tests/test_workflow.py:270:37: RUF059 Unpacked variable `truncated` is never used
+tests/test_workflow.py:302:24: RUF059 Unpacked variable `body` is never used
+Found 27 errors.
+[*] 18 fixable with `--fix` (6 unsafe fixes available with `--fix --unsafe-fixes`).

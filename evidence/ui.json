@@ -1,0 +1,16 @@
+[
+  {
+    "engine": "chromium",
+    "workflow": "guided create → decisions → approval → actual download → backup → edit → reload → undo",
+    "pageErrors": [],
+    "automatedFocusSmoke": true,
+    "humanAccessibilityTest": false
+  },
+  {
+    "engine": "firefox",
+    "workflow": "guided create → decisions → approval → actual download → backup → edit → reload → undo",
+    "pageErrors": [],
+    "automatedFocusSmoke": true,
+    "humanAccessibilityTest": false
+  }
+]

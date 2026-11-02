@@ -1,0 +1,12 @@
+Name               Stmts   Miss Branch BrPart  Cover
+----------------------------------------------------
+smw/__init__.py        1      0      0      0   100%
+smw/app.py           269     76    108     15    72%
+smw/domain.py        126     12     56     12    87%
+smw/exporters.py      50      6     34      6    86%
+smw/jobs.py          128     16     42     12    84%
+smw/network.py       241     34    114     24    83%
+smw/reports.py        32      3     18      1    92%
+smw/store.py         280     38    138     35    82%
+----------------------------------------------------
+TOTAL               1127    185    510    105    81%

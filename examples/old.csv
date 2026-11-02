@@ -1,0 +1,4 @@
+url,title,priority,canonical
+https://example.com/old-service,Service,80,https://example.com/old-service
+https://example.com/about,About,20,https://example.com/about
+https://example.com/obsolete,Old campaign,0,

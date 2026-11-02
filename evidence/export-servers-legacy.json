@@ -1,0 +1,97 @@
+{
+  "nginx": {
+    "image": "nginx:1.28-alpine",
+    "observations": [
+      {
+        "path": "/old",
+        "status": 301,
+        "location": "http://nginx/new"
+      },
+      {
+        "path": "/permanent308",
+        "status": 308,
+        "location": "http://nginx/new"
+      },
+      {
+        "path": "/merge-a",
+        "status": 301,
+        "location": "http://nginx/new"
+      },
+      {
+        "path": "/merge-b",
+        "status": 301,
+        "location": "http://nginx/new"
+      },
+      {
+        "path": "/gone",
+        "status": 410,
+        "location": null
+      },
+      {
+        "path": "/old?token=x",
+        "status": 400,
+        "location": null
+      },
+      {
+        "path": "/OLD",
+        "status": 404,
+        "location": null
+      },
+      {
+        "path": "/old/",
+        "status": 404,
+        "location": null
+      }
+    ],
+    "passed": true
+  },
+  "wordpress": {
+    "image": "wordpress:6.8.3-php8.3-apache",
+    "redirection": "5.5.2",
+    "import": "{\"imported\":5,\"version\":\"6.8.3\"}",
+    "observations": [
+      {
+        "path": "/old",
+        "status": 301,
+        "location": "http://wp/new"
+      },
+      {
+        "path": "/permanent308",
+        "status": 308,
+        "location": "http://wp/new"
+      },
+      {
+        "path": "/merge-a",
+        "status": 301,
+        "location": "http://wp/new"
+      },
+      {
+        "path": "/merge-b",
+        "status": 301,
+        "location": "http://wp/new"
+      },
+      {
+        "path": "/gone",
+        "status": 410,
+        "location": null
+      },
+      {
+        "path": "/old?token=x",
+        "status": 404,
+        "location": null
+      },
+      {
+        "path": "/OLD",
+        "status": 404,
+        "location": null
+      },
+      {
+        "path": "/old/",
+        "status": 404,
+        "location": null
+      }
+    ],
+    "roundtrip": "native Redirection export, delete, reimport, identical real HTTP observations",
+    "passed": true
+  }
+}
