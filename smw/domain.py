@@ -10,8 +10,6 @@ import re
 from datetime import datetime, timezone
 from urllib.parse import urlsplit, urlunsplit
 
-from defusedxml import ElementTree
-
 MAX_BYTES = 10 * 1024 * 1024
 MAX_ROWS = 10000
 
@@ -73,6 +71,8 @@ def parse_inventory(data, kind="list", columns=None):
     text = data.decode("utf-8-sig")
     rows = []
     if kind == "xml":
+        from defusedxml import ElementTree
+
         if re.search(r"<!\s*(DOCTYPE|ENTITY)", text, re.I):
             raise ValueError("XML entities and doctypes are disabled")
         try:
