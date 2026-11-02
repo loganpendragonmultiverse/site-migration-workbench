@@ -281,3 +281,7 @@ dd {
   margin: 0.15rem 0 0.7rem;
   overflow-wrap: anywhere;
 }
+
+#runDetail {
+  overflow-wrap: anywhere;
+}

@@ -20,3 +20,5 @@ The 10,000-row benchmark uses offline synthetic inventory and reports the actual
 Real Nginx/WordPress deployment tests, kill/restart phase coverage, packaged installation and audit results must be recorded in evidence before release. See docs/ACCEPTANCE.md; a missing result is not a pass.
 
 Full repeatable commands, exact fixture versions and observed image hashes are in docs/TEST-ENVIRONMENTS.md. Remote workflow results are available in this repository’s Actions tab; release evidence binds them to exact commits.
+
+`tests/run_history_ui.mjs` uses an original 250-row synthetic SQLite history and real local API/UI. It checks regression direction for three runs, the oldest-run boundary, full remediation paging/search, retained retry selections and the submitted retry IDs.
