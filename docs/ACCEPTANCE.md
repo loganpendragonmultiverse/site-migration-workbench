@@ -1,6 +1,6 @@
 # Candidate acceptance status
 
-**Version 0.1.0 acceptance evidence.** The local workflow is complete for the documented Linux/POSIX purpose; GitHub release and Forge catalog state must be verified separately.
+**Version 0.1.1 acceptance evidence.** The local workflow is complete for the documented Linux/POSIX purpose; GitHub release and Forge catalog state must be verified separately.
 
 Forge's Gold Star means Logan considers the project complete for its purpose and is happy with its state, with fixes and good new ideas welcome. It is not a promise of zero bugs or every possible feature. The [owner's definition](https://www.loganpendragonforge.com/open-source/gold-star/) is separate from the product-specific acceptance evidence below.
 
@@ -8,6 +8,7 @@ Forge's Gold Star means Logan considers the project complete for its purpose and
 
 | Check | Actual result |
 | --- | --- |
+| History and remediation audit | Three-run history uses older baselines; 249 uncertain rows are reachable across pages/search, with retained tail-row retry selection |
 | Core workflow | Chromium and Firefox guided review/export/backup/reload/undo pass; complete Chromium import → review → freeze → four export downloads → staging → redacted handoff → HTTP regression → production noindex test passes |
 | Unit/integration | Final per-interpreter logs are evidence/tests-python311.txt, tests-python312.txt and tests-python314.txt; Linux containers only |
 | Real adapters | Nginx 1.28 and WordPress 7.1.4 + Redirection 5.10.1 import/request tests pass. Legacy WordPress 6.8.3 + Redirection 5.5.2 also passed. WordPress native export/delete/reimport preserves the observed semantics |

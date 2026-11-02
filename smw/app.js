@@ -9,7 +9,8 @@ let state = null,
   editIds = [],
   preview = null,
   selected = new Set(),
-  currentRun = null;
+  currentRun = null,
+  remediationView = null;
 const notice = (message, error = false) => {
   $("#notice").textContent = message;
   $("#notice").classList.toggle("error", error);
@@ -636,7 +637,27 @@ async function showRun(id) {
         x.result !== "excluded",
     )
     .map((x) => x.id);
-  const retrySelection = new Set(uncertain);
+  if (remediationView?.run !== id)
+    remediationView = {
+      run: id,
+      page: 0,
+      query: "",
+      filter: "needs attention",
+      retrySelection: new Set(uncertain),
+    };
+  const view = remediationView,
+    retrySelection = view.retrySelection;
+  const uncertainIds = new Set(uncertain);
+  for (const item of retrySelection)
+    if (!uncertainIds.has(item)) retrySelection.delete(item);
+  const retryCount = paragraph("");
+  retryCount.setAttribute("aria-live", "polite");
+  function updateRetryCount() {
+    retryCount.textContent =
+      retrySelection.size + " uncertain rows selected for retry";
+  }
+  updateRetryCount();
+  d.append(retryCount);
   d.append(
     button("Retry selected uncertain rows in new run", async () => {
       if (!retrySelection.size) throw Error("Select uncertain rows first");
@@ -651,9 +672,7 @@ async function showRun(id) {
   );
   const previous = state.runs.find(
     (x) =>
-      x.id !== id &&
-      x.revision === r.revision &&
-      x.environment === r.environment,
+      x.id < id && x.revision === r.revision && x.environment === r.environment,
   );
   if (previous)
     d.append(
@@ -687,20 +706,60 @@ async function showRun(id) {
     o.textContent = v;
     filter.append(o);
   });
+  filter.value = view.filter;
   d.append(filter);
+  const searchLabel = document.createElement("label"),
+    search = document.createElement("input");
+  search.type = "search";
+  search.value = view.query;
+  searchLabel.append(
+    document.createTextNode("Search remediation URLs"),
+    search,
+  );
+  d.append(searchLabel);
+  const navigation = document.createElement("nav"),
+    range = paragraph("");
+  navigation.setAttribute("aria-label", "Remediation pages");
+  range.setAttribute("role", "status");
+  const previousPage = button("Previous remediation page", () => {
+    view.page--;
+    draw();
+  });
+  const nextPage = button("Next remediation page", () => {
+    view.page++;
+    draw();
+  });
+  navigation.append(previousPage, range, nextPage);
+  d.append(navigation);
   const list = document.createElement("div");
   d.append(list);
   function draw() {
     const values = r.rows.filter(
       (x) =>
-        filter.value === "all" ||
-        (filter.value === "needs attention" &&
-          !["pass", "excluded"].includes(x.result)) ||
-        x.result === filter.value,
+        (filter.value === "all" ||
+          (filter.value === "needs attention" &&
+            !["pass", "excluded"].includes(x.result)) ||
+          x.result === filter.value) &&
+        x.url.toLowerCase().includes(view.query.trim().toLowerCase()),
     );
+    view.page = Math.max(
+      0,
+      Math.min(view.page, Math.ceil(values.length / 100) - 1),
+    );
+    const start = view.page * 100;
+    range.textContent = values.length
+      ? "Showing " +
+        (start + 1) +
+        "–" +
+        Math.min(start + 100, values.length) +
+        " of " +
+        values.length +
+        " matching rows"
+      : "0 matching rows";
+    previousPage.disabled = view.page === 0;
+    nextPage.disabled = start + 100 >= values.length;
     list.replaceChildren(
-      paragraph(values.length + " rows; showing first 100"),
-      ...values.slice(0, 100).map((x) => {
+      ...values.slice(start, start + 100).map((x) => {
         const card = document.createElement("details");
         card.className = "card";
         const summary = document.createElement("summary");
@@ -711,10 +770,11 @@ async function showRun(id) {
             check = document.createElement("input");
           check.type = "checkbox";
           check.checked = retrySelection.has(x.id);
-          check.onchange = () =>
-            check.checked
-              ? retrySelection.add(x.id)
-              : retrySelection.delete(x.id);
+          check.onchange = () => {
+            if (check.checked) retrySelection.add(x.id);
+            else retrySelection.delete(x.id);
+            updateRetryCount();
+          };
           label.append(
             check,
             document.createTextNode("Include in selected retry"),
@@ -759,7 +819,16 @@ async function showRun(id) {
       }),
     );
   }
-  filter.onchange = draw;
+  filter.onchange = () => {
+    view.filter = filter.value;
+    view.page = 0;
+    draw();
+  };
+  search.oninput = () => {
+    view.query = search.value;
+    view.page = 0;
+    draw();
+  };
   draw();
 }
 $("#backup").onclick = () =>
