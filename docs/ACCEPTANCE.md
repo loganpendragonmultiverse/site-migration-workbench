@@ -1,6 +1,6 @@
 # Candidate acceptance status
 
-**Implemented, tested local candidate 0.1.0. Not released and not Gold.**
+**Version 0.1.0 acceptance evidence.** The local workflow is complete for the documented Linux/POSIX purpose; GitHub release and Forge catalog state must be verified separately.
 
 Forge's Gold Star means Logan considers the project complete for its purpose and is happy with its state, with fixes and good new ideas welcome. It is not a promise of zero bugs or every possible feature. The [owner's definition](https://www.loganpendragonforge.com/open-source/gold-star/) is separate from the product-specific acceptance evidence below.
 
@@ -17,7 +17,7 @@ Forge's Gold Star means Logan considers the project complete for its purpose and
 | Packaging | Wheel and source distribution build; isolated wheel installation and the full installed-package UI flow pass. Final digests and source manifest are generated after the last build |
 | Keyboard/accessibility | Automated Tab/Enter/Space/arrow-key review and freeze, modal focus, Escape and five-screen axe checks pass; no serious/critical findings. External human/screen-reader use is not claimed |
 | Representative comparison | Actual 1,200-source LinkWitness + independent CSV and Workbench runs find identical faults and the same subsequent regression; 800 rule decisions agree. No commercial-crawler/UI/human-time claim |
-| Dependency review | The only application runtime dependency is defusedxml 0.7.1 for hardened XML parsing. Installed test environment audit has no known vulnerabilities after updating its pip installer. The unpublished application is not independently indexed by the advisory service |
+| Dependency review | The only application runtime dependency is defusedxml 0.7.1 for hardened XML parsing; its pinned advisory audit found no known vulnerabilities. The original candidate installer audit also found no known vulnerabilities. The unpublished application is not independently indexed by the advisory service |
 
 Tests are original synthetic fixtures. Browser automation and model inspection are not human operator or screen-reader acceptance. The Python coverage report is an honest partial measure; browser/CLI subprocess flows are not all included in that instrumentation.
 
