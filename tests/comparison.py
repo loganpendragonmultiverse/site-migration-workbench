@@ -33,6 +33,7 @@ class Fixture(BaseHTTPRequestHandler):
         path = urlsplit(self.path).path
         kind, value = path.strip("/").split("/", 1)
         n = int(value)
+        value = str(n)  # Headers use validated numeric fixture IDs, never raw request text.
         status = 200
         headers = {"Content-Type": "text/html"}
         canonical = path
@@ -69,7 +70,7 @@ class Fixture(BaseHTTPRequestHandler):
             elif n == 30:
                 status = 401
             elif n == 50:
-                status, headers["Location"], body = 302, path, b""
+                status, headers["Location"], body = 302, "/keep/" + value, b""
             elif n == 70:
                 canonical = "/wrong/70"
             elif n == 80:
