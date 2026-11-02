@@ -1,0 +1,20 @@
+{
+  "engine": "chromium",
+  "steps": [
+    "create",
+    "CSV preview/import old and new",
+    "explicit private fixture allowlist",
+    "review all dispositions",
+    "freeze",
+    "download all four exports",
+    "staging three passes",
+    "redacted handoff",
+    "regression after a real HTTP change",
+    "production catches staging noindex"
+  ],
+  "denominator": 3,
+  "stagingPasses": 3,
+  "regressionFailures": 1,
+  "productionNoindexFailures": 2,
+  "pageErrors": []
+}

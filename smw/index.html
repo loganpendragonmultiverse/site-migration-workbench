@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="workbench-token" content="SESSION_TOKEN" />
+    <title>Site Migration Workbench</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="brand">
+        ↗ <strong>Site Migration Workbench</strong
+        ><span>Local migration planning · 0.1.0 candidate</span>
+      </div>
+      <button id="backup">Back up workspace</button
+      ><label class="button"
+        >Restore backup <input id="restore" type="file" accept=".json"
+      /></label>
+    </header>
+    <div class="layout">
+      <aside>
+        <h2>Projects</h2>
+        <button id="example">Start guided example</button>
+        <div id="projects"></div>
+        <form id="create">
+          <h3>New project</h3>
+          <label>Name<input name="name" required maxlength="200" /></label
+          ><label
+            >Production origin<input
+              name="production"
+              type="url"
+              placeholder="https://example.com"
+              required /></label
+          ><label
+            >Staging origin<input
+              name="staging"
+              type="url"
+              placeholder="https://staging.example.com"
+              required /></label
+          ><button>Create project</button>
+        </form>
+        <p>
+          Planning stays on this machine. Verification contacts only configured
+          sites. No telemetry.
+        </p>
+      </aside>
+      <main>
+        <div id="notice" role="status" aria-live="polite">
+          Create a project or start the guided example.
+        </div>
+        <section id="workspace" hidden>
+          <div class="heading">
+            <div>
+              <p class="eyebrow">Migration workspace</p>
+              <h1 id="name"></h1>
+              <p id="revisionStatus"></p>
+            </div>
+            <button id="archive">Archive / reopen</button>
+          </div>
+          <nav aria-label="Workflow">
+            <button data-tab="inventory">1 · Inventory</button
+            ><button data-tab="mapping">2 · Decisions</button
+            ><button data-tab="approval">3 · Approval & exports</button
+            ><button data-tab="verification">4 · Verify & handoff</button
+            ><button data-tab="settings">Settings</button>
+          </nav>
+          <section id="inventory" class="tab">
+            <h2>Import with provenance</h2>
+            <p>
+              Import old URLs and the proposed new inventory. Review the preview
+              before applying. Identity keeps path case, trailing slash, percent
+              spelling, and query order.
+            </p>
+            <form id="importForm">
+              <div class="formgrid">
+                <label
+                  >Inventory<select name="side">
+                    <option value="old">Old / source URLs</option>
+                    <option value="new">New / target URLs</option>
+                  </select></label
+                ><label
+                  >Format<select name="kind">
+                    <option value="list">One URL per line</option>
+                    <option value="csv">CSV / crawler export</option>
+                    <option value="xml">Sitemap XML</option>
+                    <option value="gzip">Gzip sitemap</option>
+                  </select></label
+                ><label
+                  >Source name<input
+                    name="source"
+                    required
+                    placeholder="Pre-launch crawl · 2 Nov" /></label
+                ><label>File<input name="file" type="file" required /></label
+                ><label>URL column<input name="url" value="url" /></label
+                ><label>Title column<input name="title" value="title" /></label
+                ><label
+                  >Priority column<input
+                    name="priority"
+                    value="priority" /></label
+                ><label
+                  >Canonical column<input name="canonical" value="canonical"
+                /></label>
+              </div>
+              <button>Preview import</button>
+            </form>
+            <pre id="importPreview" tabindex="0"></pre>
+            <button id="applyImport" disabled>Import reviewed file</button
+            ><button id="cancelImport" disabled>
+              Cancel active import/fetch
+            </button>
+            <form id="fetchForm">
+              <h3>Fetch bounded sitemap or index</h3>
+              <label>Sitemap URL<input name="url" type="url" required /></label
+              ><label
+                >Inventory<select name="side">
+                  <option value="old">Old</option>
+                  <option value="new">New</option>
+                </select></label
+              ><button>Fetch and import declared sitemap</button>
+            </form>
+            <p>
+              At most 25 same-origin sitemap files, 20 MiB fetched and 10,000
+              rows. Redirecting sitemap endpoints must be downloaded and
+              imported manually.
+            </p>
+            <h3>Inventory summary</h3>
+            <p id="inventorySummary"></p>
+          </section>
+          <section id="mapping" class="tab" hidden>
+            <h2>Decisions</h2>
+            <p>
+              Select rows for a bulk preview, or use Edit for one decision.
+              Suggestions explain resemblance; they do not establish equivalent
+              content. Save decisions with Review enabled when ready.
+            </p>
+            <div class="toolbar">
+              <label
+                >Search<input
+                  id="search"
+                  type="search"
+                  placeholder="URL, title, rationale" /></label
+              ><label
+                >Show<select id="filter">
+                  <option value="all">All</option>
+                  <option value="unresolved">Unresolved</option>
+                  <option value="unreviewed">Unreviewed</option>
+                  <option value="excluded">Excluded</option>
+                  <option value="duplicates">Multiple input occurrences</option>
+                </select></label
+              ><button id="selectMatching">Select matching rows</button
+              ><button id="clearSelection">Clear selection</button
+              ><button id="bulk">Preview bulk edit</button
+              ><button id="pathRules">Preview exact-path proposals</button
+              ><button id="undo">Undo last edit</button>
+            </div>
+            <p id="rowCount"></p>
+            <div class="tableWrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Select</th>
+                    <th>Source & evidence</th>
+                    <th>Decision</th>
+                    <th>Destination</th>
+                    <th>Review</th>
+                    <th>Action</th>
+                  </tr>
+                </thead>
+                <tbody id="rows"></tbody>
+              </table>
+            </div>
+            <div class="toolbar">
+              <button id="prev">Previous</button><span id="page"></span
+              ><button id="next">Next</button>
+            </div>
+          </section>
+          <section id="approval" class="tab" hidden>
+            <h2>Freeze the reviewed plan</h2>
+            <p>
+              Freezing preserves this revision's scope, provenance, exceptions,
+              environment settings and content hash. It records an operator
+              decision, not a signature. Later edits make the working copy
+              different; old revisions and their runs remain intact.
+            </p>
+            <div id="issues"></div>
+            <button id="freeze">Freeze approved revision</button>
+            <h3>Deployment capability boundary</h3>
+            <p>
+              Nginx exact-path and WordPress Redirection exports support
+              conservative ASCII, query-free source paths, 301/308 redirects and
+              supported retirement statuses. Unsupported query, encoded,
+              Unicode, cross-host source or unsafe paths block the entire
+              adapter export with a manual instruction. Plan JSON/CSV always
+              retain every row. Generated rules are for operator review and
+              deployment.
+            </p>
+            <div id="revisions"></div>
+          </section>
+          <section id="verification" class="tab" hidden>
+            <h2>Verify the frozen plan</h2>
+            <form id="runForm">
+              <label
+                >Revision<select
+                  id="runRevision"
+                  name="revision"
+                ></select></label
+              ><label
+                >Environment<select name="environment">
+                  <option value="staging">Staging</option>
+                  <option value="production">Production</option>
+                </select></label
+              ><button>Start declared-set check</button>
+            </form>
+            <p>
+              Two URLs per second; ten redirect hops; bounded responses. Staging
+              noindex allowances never apply to production. Authentication and
+              JavaScript rendering are unsupported. A login/blocking response is
+              inconclusive.
+            </p>
+            <div id="runs"></div>
+            <div id="runDetail"></div>
+          </section>
+          <section id="settings" class="tab" hidden>
+            <h2>Project environments</h2>
+            <form id="settingsForm">
+              <label
+                >Production origin<input
+                  name="production"
+                  type="url"
+                  required /></label
+              ><label
+                >Staging origin<input
+                  name="staging"
+                  type="url"
+                  required /></label
+              ><label
+                >Additional approved old/new site origins (comma
+                separated)<input
+                  name="additional_origins"
+                  placeholder="https://old.example.com, https://new.example.com" /></label
+              ><label
+                >Explicit private staging IPs (comma separated)<input
+                  name="private_allowlist"
+                  placeholder="Empty blocks private and reserved addresses" /></label
+              ><label
+                ><input name="staging_noindex" type="checkbox" /> Allow
+                intentional staging noindex</label
+              ><button>Save settings and invalidate working approval</button>
+            </form>
+            <p>
+              Private addresses require deliberate exact-IP approval here. No
+              CIDR ranges, proxies, URL credentials, authentication storage, or
+              production configuration writes.
+            </p>
+          </section>
+        </section>
+      </main>
+    </div>
+    <dialog id="editDialog" aria-labelledby="editHeading">
+      <form id="editForm">
+        <h2 id="editHeading">Review decision</h2>
+        <p id="editScope"></p>
+        <label
+          >Disposition<select name="disposition">
+            <option>unresolved</option>
+            <option>keep</option>
+            <option>redirect</option>
+            <option>merge</option>
+            <option>retire</option>
+          </select></label
+        ><label>Target URL<input name="target" type="url" /></label
+        ><label
+          >Expected status<select name="status">
+            <option>200</option>
+            <option>301</option>
+            <option>308</option>
+            <option>404</option>
+            <option>410</option>
+          </select></label
+        ><label
+          >Priority (0–100)<input
+            name="priority"
+            type="number"
+            min="0"
+            max="100"
+            value="0" /></label
+        ><label
+          >Rationale<textarea
+            name="rationale"
+            required
+            maxlength="8192"
+          ></textarea></label
+        ><label
+          >Approved exception (visible, never a technical pass)<textarea
+            name="exception"
+            maxlength="8192"
+          ></textarea></label
+        ><label><input name="reviewed" type="checkbox" /> Reviewed</label
+        ><label
+          ><input name="excluded" type="checkbox" /> Exclude from verification
+          (rationale required)</label
+        >
+        <div id="suggestions"></div>
+        <div class="toolbar">
+          <button type="button" id="previewEdit">Preview changes</button
+          ><button type="submit" id="saveEdit" disabled>
+            Apply previewed decisions</button
+          ><button type="button" id="cancelEdit">Cancel</button>
+        </div>
+        <pre id="editPreview"></pre>
+      </form>
+    </dialog>
+    <dialog id="rulesDialog" aria-labelledby="rulesHeading">
+      <h2 id="rulesHeading">Expanded exact-path proposals</h2>
+      <p>
+        Only unique exact path-and-query matches are proposed. Ambiguous rows
+        stay unresolved. Applying saves drafts; every decision still needs
+        review.
+      </p>
+      <pre id="rulesPreview"></pre>
+      <button id="applyRules">Apply as unreviewed drafts</button
+      ><button id="cancelRules">Cancel</button>
+    </dialog>
+    <script src="/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,70 @@
+{
+  "sources": 1200,
+  "first_seeded_cases": [
+    10,
+    30,
+    40,
+    50,
+    70,
+    80,
+    410,
+    420,
+    430,
+    440,
+    810,
+    1010,
+    1100
+  ],
+  "additional_regression": 415,
+  "both_detected_same_results": true,
+  "baseline": "Existing LinkWitness v1.2.1 redirect/canonical capture, explicit two-batch capture, independent CSV expected/actual join and regression",
+  "baseline_is_general_crawler": false,
+  "csv_rule_decisions_equal_wordpress_export": 800,
+  "frozen_plan_hash": "70fbbf1ddf0041e33fac4721a958f2a7a70b4ad3a78b4d95e17a5263ffbee984",
+  "baseline_expected_csv_hash": "d17ac50f900091a030fb93248ae9b01f0b8bb4b1a292d5bb682dc0532b518ec7",
+  "newly_failing": 1,
+  "timings": [
+    {
+      "iteration": 1,
+      "capture_csv_counts": {
+        "pass": 1187,
+        "fail": 10,
+        "inconclusive": 2,
+        "warning": 1
+      },
+      "workbench_counts": {
+        "pass": 1187,
+        "fail": 10,
+        "warning": 1,
+        "not checked": 0,
+        "inconclusive": 2,
+        "excluded": 0
+      },
+      "capture_and_join_seconds": 29.81940995110199,
+      "workbench_accelerated_seconds": 18.601887320168316
+    },
+    {
+      "iteration": 2,
+      "capture_csv_counts": {
+        "pass": 1186,
+        "fail": 11,
+        "inconclusive": 2,
+        "warning": 1
+      },
+      "workbench_counts": {
+        "pass": 1186,
+        "fail": 11,
+        "warning": 1,
+        "not checked": 0,
+        "inconclusive": 2,
+        "excluded": 0
+      },
+      "capture_and_join_seconds": 29.630544668994844,
+      "workbench_accelerated_seconds": 20.570050039328635
+    }
+  ],
+  "timing_limit": "Loopback synthetic test only. Workbench delay disabled for repeatability; these are not default production timings or human time savings.",
+  "external_humans": 0,
+  "outreach": false,
+  "fair_conclusion": "Both configured approaches found the seeded faults. Workbench's demonstrated advantage is persisted dispositions, approval/rule validation, frozen plan binding and built-in rerun/remediation/handoff; an equally careful custom spreadsheet workflow can reproduce the checks."
+}

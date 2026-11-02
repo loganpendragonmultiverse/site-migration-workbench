@@ -1,0 +1,9 @@
+name: Feature request
+description: Describe an operator workflow improvement
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Operator problem and proposed behavior
+    validations:
+      required: true

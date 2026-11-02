@@ -1,0 +1,12 @@
+{
+  "platform": "Linux-5.14.0-687.54.1.el9_8.x86_64-x86_64-with-glibc2.41",
+  "python": "3.12.15",
+  "cpu": "",
+  "rows": 10000,
+  "import_seconds": 0.926767794881016,
+  "load_seconds": 0.18519971705973148,
+  "filter_seconds": 0.0017111101187765598,
+  "matched": 111,
+  "peak_rss_kib_linux": 45776,
+  "network": "Not measured; offline supplied inventory"
+}

@@ -1,0 +1,22 @@
+{
+  "version": "0.1.0",
+  "runtime_dependencies": [],
+  "verified_package_files": [
+    "smw/__init__.py",
+    "smw/domain.py",
+    "smw/store.py",
+    "smw/network.py",
+    "smw/exporters.py",
+    "smw/jobs.py",
+    "smw/reports.py",
+    "smw/app.py",
+    "smw/index.html",
+    "smw/style.css",
+    "smw/app.js"
+  ],
+  "artifacts": {
+    "site_migration_workbench-0.1.0-py3-none-any.whl": "a15a3ab5763019ac0afa64ab7186bd332765e2e620f9892aca1c40beaadc4faa",
+    "site_migration_workbench-0.1.0.tar.gz": "d74a4f8da82a68fbd29d4bcaf52ba22cdd49ee2d09288bc24ae9f100aedb0fa6"
+  },
+  "scope": "local candidate artifacts, not tag-built public release"
+}

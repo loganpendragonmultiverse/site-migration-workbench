@@ -1,0 +1,51 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ["3.11", "3.14"]
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: ${{ matrix.python }}
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install ruff==0.17.3 build==1.6.1 .
+      - run: ruff format --check smw tests
+      - run: ruff check smw tests
+      - run: python -m unittest discover -s tests -v
+      - run: python -m build
+      - run: python -m pip install dist/*.whl
+      - run: migration-workbench --version
+  browser:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: "3.12"
+      - run: python -m pip install .
+      - run: npm install --prefix .test-tools --no-audit --no-fund playwright@1.64.1 prettier@3.6.2 @axe-core/playwright@4.10.2
+      - run: .test-tools/node_modules/.bin/playwright install --with-deps chromium firefox
+      - run: .test-tools/node_modules/.bin/prettier --check smw/app.js smw/index.html smw/style.css tests/*.mjs
+      - run: mkdir -p evidence && node tests/ui.mjs && node tests/full_ui.mjs && node tests/scale_ui.mjs && node tests/accessibility.mjs
+  deployment-adapters:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: "3.12"
+      - run: python -m pip install .
+      - run: mkdir -p .test-tools/downloads evidence
+      - run: curl --fail --location https://downloads.wordpress.org/plugin/redirection.5.10.1.zip --output .test-tools/downloads/redirection-5.10.1.zip
+      - run: echo 'f68a4be447ecba00c64e8a39d7517807ed49cc18e77b7a364c20cb31848235b7  .test-tools/downloads/redirection-5.10.1.zip' | sha256sum -c -
+      - run: docker pull nginx:1.28-alpine && docker pull mariadb:11.8 && docker pull wordpress:7.1.4-php8.3-apache && docker pull python:3.12-slim
+      - run: python3 tests/export_servers.py

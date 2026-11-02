@@ -1,0 +1,26 @@
+name: Release packages
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
+        with:
+          python-version: "3.12"
+      - run: python -m pip install build==1.6.1 .
+      - run: python -c 'import os; from smw import __version__; assert os.environ["GITHUB_REF_TYPE"] != "tag" or os.environ["GITHUB_REF_NAME"] == "v" + __version__'
+      - run: python -m unittest discover -s tests -v
+      - run: python -m build
+      - run: mkdir -p evidence && python tests/check_artifacts.py
+      - run: python -m pip install dist/*.whl && migration-workbench --version
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4
+        with:
+          name: release-packages
+          path: dist/
+          if-no-files-found: error

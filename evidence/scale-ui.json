@@ -1,0 +1,10 @@
+{
+  "rows": 10000,
+  "loadAndRenderMs": 1135.896387,
+  "filterMs": 119.39718999999968,
+  "matched": 111,
+  "selected": 111,
+  "visibleRows": 100,
+  "browser": "Chromium 1.64.1 container",
+  "limits": "2 CPUs / 2 GiB container, no external requests"
+}

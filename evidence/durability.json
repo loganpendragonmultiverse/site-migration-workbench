@@ -1,0 +1,30 @@
+[
+  {
+    "phase": "import",
+    "termination": "SIGKILL",
+    "approved_hash_preserved": true,
+    "inventory_preserved": true,
+    "recovered": true
+  },
+  {
+    "phase": "edit",
+    "termination": "SIGKILL",
+    "approved_hash_preserved": true,
+    "inventory_preserved": true,
+    "recovered": true
+  },
+  {
+    "phase": "verification",
+    "termination": "SIGKILL",
+    "approved_hash_preserved": true,
+    "inventory_preserved": true,
+    "recovered": true
+  },
+  {
+    "phase": "export",
+    "termination": "SIGKILL",
+    "approved_hash_preserved": true,
+    "inventory_preserved": true,
+    "recovered": true
+  }
+]

@@ -1,0 +1,3 @@
+url,title,priority,canonical
+https://example.com/service,Service,80,https://example.com/service
+https://example.com/about,About,20,https://example.com/about

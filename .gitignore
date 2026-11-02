@@ -1,0 +1,11 @@
+__pycache__/
+*.py[cod]
+*.sqlite*
+*.egg-info/
+build/
+dist/
+.test-tools/
+.coverage
+.pytest_cache/
+.ruff_cache/
+.forge-write-*.lock

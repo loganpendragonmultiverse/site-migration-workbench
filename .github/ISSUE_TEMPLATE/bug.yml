@@ -1,0 +1,10 @@
+name: Bug report
+description: Report a reproducible problem with synthetic data
+body:
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps, expected and actual behavior
+      description: Include Python/OS versions and a minimal synthetic input. No secrets or client URLs.
+    validations:
+      required: true

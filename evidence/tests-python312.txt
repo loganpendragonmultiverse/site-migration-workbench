@@ -1,0 +1,37 @@
+test_decision_export_run_handoff_recovery (test_api_complete.CompleteAPI.test_decision_export_run_handoff_recovery) ... ok
+test_installed_contract_backup_restore_report_lock_and_verify (test_cli.CLI.test_installed_contract_backup_restore_report_lock_and_verify) ... ok
+test_partial_close_delimited_body_is_not_success_after_deadline (test_deadline.Deadline.test_partial_close_delimited_body_is_not_success_after_deadline) ... ok
+test_atomic_output_no_overwrite_or_symlink (test_jobs.Lifecycle.test_atomic_output_no_overwrite_or_symlink) ... ok
+test_pause_cancel_resume_and_retry_denominator (test_jobs.Lifecycle.test_pause_cancel_resume_and_retry_denominator) ... ok
+test_real_local_correctness_corpus (test_jobs.Lifecycle.test_real_local_correctness_corpus) ... ok
+test_single_worker_durable_queue (test_jobs.Lifecycle.test_single_worker_durable_queue) ... ok
+test_transactional_import_cancel (test_jobs.Lifecycle.test_transactional_import_cancel) ... ok
+test_nested_sitemap_same_scope_provenance_and_budget (test_sitemap.SitemapAPI.test_nested_sitemap_same_scope_provenance_and_budget) ... ok
+test_correct_wrong_temporary_and_dead (test_workflow.Network.test_correct_wrong_temporary_and_dead) ... ok
+test_explicit_additional_site_scope (test_workflow.Network.test_explicit_additional_site_scope) ... ok
+test_keep_retire_canonical_and_robots (test_workflow.Network.test_keep_retire_canonical_and_robots) ... ok
+test_login_metadata_budget_and_downgrade (test_workflow.Network.test_login_metadata_budget_and_downgrade) ... ok
+test_mixed_dns_and_exact_allowlist (test_workflow.Network.test_mixed_dns_and_exact_allowlist) ... ok
+test_redirect_loop_cross_origin_and_hop_limit (test_workflow.Network.test_redirect_loop_cross_origin_and_hop_limit) ... ok
+test_transport_connection_is_pinned_and_no_auth (test_workflow.Network.test_transport_connection_is_pinned_and_no_auth) ... ok
+test_uncertainty_never_passes (test_workflow.Network.test_uncertainty_never_passes) ... ok
+test_origin_host_and_csrf (test_workflow.Server.test_origin_host_and_csrf) ... ok
+test_ui_workflow_api (test_workflow.Server.test_ui_workflow_api) ... ok
+test_backup_rejects_executable_schema (test_workflow.Workspace.test_backup_rejects_executable_schema) ... ok
+test_backup_restore_and_corruption (test_workflow.Workspace.test_backup_restore_and_corruption) ... ok
+test_conflicts_loop_and_many_to_one (test_workflow.Workspace.test_conflicts_loop_and_many_to_one) ... ok
+test_csv_formula_defense (test_workflow.Workspace.test_csv_formula_defense) ... ok
+test_decisions_freeze_undo_stale_generation (test_workflow.Workspace.test_decisions_freeze_undo_stale_generation) ... ok
+test_duplicates_provenance_and_limit_transaction (test_workflow.Workspace.test_duplicates_provenance_and_limit_transaction) ... ok
+test_exclusion_remains_in_plan_and_needs_reason (test_workflow.Workspace.test_exclusion_remains_in_plan_and_needs_reason) ... ok
+test_export_capability_blocks_without_drops (test_workflow.Workspace.test_export_capability_blocks_without_drops) ... ok
+test_import_formats_and_expansion (test_workflow.Workspace.test_import_formats_and_expansion) ... ok
+test_report_full_denominator_redaction_and_regression (test_workflow.Workspace.test_report_full_denominator_redaction_and_regression) ... ok
+test_restart_marks_running_interrupted (test_workflow.Workspace.test_restart_marks_running_interrupted) ... ok
+test_suggestion_is_explainable_and_not_approval (test_workflow.Workspace.test_suggestion_is_explainable_and_not_approval) ... ok
+test_url_identity_and_rejection (test_workflow.Workspace.test_url_identity_and_rejection) ... ok
+
+----------------------------------------------------------------------
+Ran 32 tests in 28.268s
+
+OK

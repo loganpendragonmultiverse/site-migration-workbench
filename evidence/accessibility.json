@@ -1,0 +1,28 @@
+{
+  "keyboard": "Tab/Enter/Space/Home/ArrowDown workflow completed, all three decisions reviewed and frozen; modal focus retained; Escape closes",
+  "automated": true,
+  "screenReaderHuman": false,
+  "filePickerOSDialogTested": false,
+  "screens": [
+    {
+      "section": "inventory",
+      "violations": []
+    },
+    {
+      "section": "mapping",
+      "violations": []
+    },
+    {
+      "section": "approval",
+      "violations": []
+    },
+    {
+      "section": "verification",
+      "violations": []
+    },
+    {
+      "section": "settings",
+      "violations": []
+    }
+  ]
+}

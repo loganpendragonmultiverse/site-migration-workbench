@@ -1,0 +1,22 @@
+{
+  "engine": "chromium",
+  "steps": [
+    "create",
+    "CSV preview/import old and new",
+    "explicit private fixture allowlist",
+    "review all dispositions",
+    "freeze",
+    "download all four exports",
+    "staging three passes",
+    "redacted handoff",
+    "regression after a real HTTP change",
+    "production catches staging noindex"
+  ],
+  "denominator": 3,
+  "stagingPasses": 3,
+  "regressionFailures": 1,
+  "productionNoindexFailures": 2,
+  "pageErrors": [],
+  "installation": "isolated wheel target, Python -I; checkout app imports disabled",
+  "wheel_sha256": "a15a3ab5763019ac0afa64ab7186bd332765e2e620f9892aca1c40beaadc4faa"
+}

@@ -1,0 +1,283 @@
+:root {
+  font-family: system-ui, sans-serif;
+  color: #1a302f;
+  background: #f4f6f2;
+  line-height: 1.5;
+  --ink: #153e37;
+  --line: #cbd5cf;
+}
+* {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+}
+header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem 1.7rem;
+  background: var(--ink);
+  color: white;
+}
+.brand {
+  flex: 1;
+  font-size: 1.15rem;
+}
+.brand span {
+  display: block;
+  font-size: 0.8rem;
+  color: #c3dfce;
+  margin-left: 1.7rem;
+}
+.layout {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  min-height: calc(100vh - 80px);
+}
+aside {
+  padding: 1.5rem;
+  background: #e6ede5;
+  border-right: 1px solid var(--line);
+}
+main {
+  padding: 1.5rem 2rem;
+  min-width: 0;
+  max-width: 1600px;
+}
+h1 {
+  font-size: 2rem;
+  margin: 0.2rem 0;
+}
+h2 {
+  font-size: 1.25rem;
+}
+.heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  margin: 0;
+}
+button,
+.button {
+  display: inline-block;
+  background: #fff;
+  color: var(--ink);
+  border: 1px solid #9aac9e;
+  border-radius: 5px;
+  padding: 0.55rem 0.8rem;
+  cursor: pointer;
+  font: inherit;
+}
+button:hover,
+.button:hover {
+  background: #dcebdd;
+}
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+button.active {
+  background: var(--ink);
+  color: white;
+}
+label {
+  display: block;
+  font-size: 0.9rem;
+  margin: 0.6rem 0;
+}
+input,
+select,
+textarea {
+  display: block;
+  width: 100%;
+  font: inherit;
+  background: white;
+  color: #17352d;
+  border: 1px solid #8fa497;
+  border-radius: 4px;
+  padding: 0.5rem;
+}
+input[type="checkbox"] {
+  display: inline;
+  width: auto;
+  margin-right: 0.5rem;
+}
+textarea {
+  min-height: 80px;
+}
+.button input {
+  width: 180px;
+  font-size: 0.75rem;
+}
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  border-bottom: 1px solid var(--line);
+  padding: 1rem 0;
+  margin-bottom: 1.5rem;
+}
+.tab {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+.formgrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(180px, 1fr));
+  gap: 0 1rem;
+}
+.toolbar {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+}
+.toolbar label {
+  flex: 1;
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.86rem;
+}
+td,
+th {
+  text-align: left;
+  vertical-align: top;
+  padding: 0.7rem;
+  border-bottom: 1px solid var(--line);
+  overflow-wrap: anywhere;
+  max-width: 350px;
+}
+th {
+  background: #eef3ed;
+  position: sticky;
+  top: 0;
+}
+.tableWrap {
+  overflow: auto;
+  max-height: 65vh;
+}
+td small {
+  display: block;
+  color: #4f6158;
+}
+td input {
+  width: auto;
+}
+pre {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  background: #f0f3ed;
+  border-radius: 4px;
+  padding: 0.8rem;
+  max-height: 260px;
+  overflow: auto;
+}
+#notice {
+  padding: 0.75rem 1rem;
+  background: #e3ecdf;
+  border-left: 4px solid #2e6949;
+  margin-bottom: 1.5rem;
+}
+.error {
+  border-color: #a72d2d !important;
+  background: #ffe7e0 !important;
+}
+.card {
+  border: 1px solid var(--line);
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 6px;
+}
+.card h3 {
+  margin: 0.1rem 0 0.7rem;
+}
+.badge {
+  font-size: 0.8rem;
+  font-weight: bold;
+  color: #475c52;
+}
+.fail {
+  color: #a52a2a;
+}
+.pass {
+  color: #176044;
+}
+.warning,
+.inconclusive {
+  color: #795000;
+}
+dialog {
+  width: min(700px, 90vw);
+  max-height: 90vh;
+  overflow: auto;
+  border: 1px solid #99ad9d;
+  border-radius: 8px;
+  padding: 1.5rem;
+}
+dialog::backdrop {
+  background: #172d2780;
+}
+:focus-visible {
+  outline: 3px solid #b36e0b;
+  outline-offset: 3px;
+}
+#projects button {
+  display: block;
+  width: 100%;
+  margin: 0.5rem 0;
+  text-align: left;
+}
+aside p {
+  font-size: 0.82rem;
+  color: #44594f;
+}
+[hidden] {
+  display: none !important;
+}
+@media (max-width: 800px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  aside {
+    border-right: 0;
+  }
+  header {
+    flex-wrap: wrap;
+  }
+  main {
+    padding: 1rem;
+  }
+  .formgrid {
+    grid-template-columns: 1fr;
+  }
+  .heading {
+    align-items: start;
+  }
+  .brand {
+    min-width: 100%;
+  }
+}
+
+.toolbar label {
+  min-width: 180px;
+}
+
+dt {
+  font-weight: 600;
+  margin-top: 0.5rem;
+}
+dd {
+  margin: 0.15rem 0 0.7rem;
+  overflow-wrap: anywhere;
+}
