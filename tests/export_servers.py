@@ -253,8 +253,10 @@ else {
 }
 echo json_encode(['reimported'=>$count]);
 """
-    (wp_dir / "roundtrip-fixture.php").write_text(roundtrip)
-    reimported = docker("exec", wp, "php", "/var/www/html/roundtrip-fixture.php")
+    roundtrip_file = wp_dir.parent / (wp_dir.name + "-roundtrip.php")
+    roundtrip_file.write_text(roundtrip)
+    docker("cp", str(roundtrip_file), wp + ":/tmp/roundtrip-fixture.php")
+    reimported = docker("exec", wp, "php", "/tmp/roundtrip-fixture.php")
     assert '"reimported":5' in reimported, reimported
     repeated = observe("wp")
     assert repeated == observations, (repeated, observations)
